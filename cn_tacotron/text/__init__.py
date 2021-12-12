@@ -1,0 +1,1 @@
+from .feature_converter import label_to_sequence as text_to_sequence

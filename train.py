@@ -262,14 +262,14 @@ def train(model, data_loader, optimizer,
             optimizer.step()
 
             # Logs
-            log_value("loss", float(loss.data[0]), global_step)
-            log_value("mel loss", float(mel_loss.data[0]), global_step)
-            log_value("linear loss", float(linear_loss.data[0]), global_step)
+            log_value("loss", float(loss.data.item()), global_step)
+            log_value("mel loss", float(mel_loss.data.item()), global_step)
+            log_value("linear loss", float(linear_loss.data.item()), global_step)
             log_value("gradient norm", grad_norm, global_step)
             log_value("learning rate", current_lr, global_step)
 
             global_step += 1
-            running_loss += loss.data[0]
+            running_loss += loss.data.item()
 
         averaged_loss = running_loss / (len(data_loader))
         log_value("loss (per epoch)", averaged_loss, global_epoch)
@@ -300,7 +300,7 @@ if __name__ == "__main__":
         DATA_ROOT = data_root
 
     # Override hyper parameters
-    hparams.parse(args["--hparams"])
+    # hparams.parse(args["--hparams"])
 
     os.makedirs(checkpoint_dir, exist_ok=True)
 
