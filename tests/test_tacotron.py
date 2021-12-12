@@ -22,7 +22,7 @@ def test_taco():
 
     texts = ["Thank you very much.", "Hello"]
     seqs = [np.array(text_to_sequence(
-        t, ["english_cleaners"]), dtype=np.int) for t in texts]
+        t, ["english_cleaners"]), dtype=int) for t in texts]
     input_lengths = np.array([len(s) for s in seqs])
     max_len = np.max(input_lengths)
     seqs = np.array([_pad(s, max_len) for s in seqs])

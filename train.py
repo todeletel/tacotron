@@ -109,7 +109,7 @@ class LinearSpecDataSource(_NPYDataSource):
         super(LinearSpecDataSource, self).__init__(0)
 
 
-class PyTorchDataset(object):
+class PyTorchDataset:
     def __init__(self, X, Mel, Y):
         self.X = X
         self.Mel = Mel
@@ -133,7 +133,7 @@ def collate_fn(batch):
         max_target_len += r - max_target_len % r
         assert max_target_len % r == 0
 
-    a = np.array([_pad(x[0], max_input_len) for x in batch], dtype=np.int)
+    a = np.array([_pad(x[0], max_input_len) for x in batch], dtype=int)
     x_batch = torch.LongTensor(a)
 
     input_lengths = torch.LongTensor(input_lengths)
